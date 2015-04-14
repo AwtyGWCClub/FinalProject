@@ -1,3 +1,5 @@
+var drawingcactus = function(){
+
 noStroke();
 fill(0, 0, 0);
 rect(306,214,196,309);
@@ -27,22 +29,25 @@ fill(255, 0, 0);
 ellipse(269,28,23,23);
 ellipse(309,28,23,23);
 ellipse(349,28,23,23);
-
+};
 ///Alex and Abby are trying to create the status bar using the concept of pixels and percentages. However, we do not know how. Our background was 8000x600 pixels. Our screen will be 800x600. The Status Bar is 200 pixels wide. So for every 80 pixels that the cactus moves, the blue rectangle on the status bar will move 2 pixels.///
 
 var cactus; 
 var statusbar;
 var statusbarmove;
 
+
+
 var draw=function() {
+    drawingcactus();
 fill(255, 255, 255);
 statusbar = rect(20,20,200,15);
 fill(162, 183, 235);
 statusbarmove = rect(20,20,0,15);
 };
 
-for (var cactus = 0; cactus < 8000; cactus += 0) {
-    var statusbarmove = cactus * (0.025);
-}
+///for (var cactus = 0; cactus < 8000; cactus += 0) {
+   /// var statusbarmove = cactus * (0.025);
+///}
 
  
