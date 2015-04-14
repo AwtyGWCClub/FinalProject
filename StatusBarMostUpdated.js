@@ -39,9 +39,10 @@ fill(255, 255, 255);
 statusbar = rect(20,20,200,15);
 fill(162, 183, 235);
 statusbarmove = rect(20,20,0,15);
+};
 
 for (var cactus = 0; cactus < 8000; cactus += 0) {
-    var statusbarmove = cactus * (.025);
+    var statusbarmove = cactus * (0.025);
 }
 
  
