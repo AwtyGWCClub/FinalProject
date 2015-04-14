@@ -1,8 +1,10 @@
+var showflower = function (flower){ 
+
 var flower = true; 
 var playing = true;
 
-
 background(219, 242, 255);
+
 
         if(flower){
             if(playing){
@@ -24,3 +26,8 @@ background(219, 242, 255);
             ellipse(199, 129, 30, 30);
 
         }
+
+};
+
+showflower();
+
