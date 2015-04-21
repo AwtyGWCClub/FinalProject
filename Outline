@@ -1,0 +1,11 @@
+Senor Cactus game outline:
+
+  Game starts:
+    ->Background starts moving
+    ->Senor Cactus avoids obstacles:
+          -Jumps over barrels, oil
+              Use jumping code to jump on/ over barrels and oils and intersection code to trigger a block when touching the barrels
+          -Collects raindrops
+              Use jumping code and intersection code to trigger the "gain a life" code
+      If touches any of these things, use intersection code, and trigger the "Lose" animation (where image "normal" cactus changes to "dead" cactus while making him fall)
+      If he suceeds, proceed to ending animation.
