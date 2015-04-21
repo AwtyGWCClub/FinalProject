@@ -73,8 +73,43 @@ var draw = function() {
 
 
    // ->Senor Cactus avoids obstacles (var senorImg, var senorX1, vvar senorX2, var senorY1, var senorY2):
-          //-Jumps over barrels, oil (var barrelImg, var barrelX1, var barrelX2, var barrelY1, ar barrelY2 / var oilImg, var oilX1, var oilX2, var oilY1, var oilY2)
+          //-Jumps over barrels, oil (var barrelImg, var barrelX1, var barrelX2, var barrelY1, var barrelY2 / var oilImg, var oilX1, var oilX2, var oilY1, var oilY2)
+          
+          // how far senor cactus moves every time
+
+var senorImg = senorcactusImg.jpg;
+var senorX = 0;
+var senorY = 0;
+var speedX = 0;
+var speedY = 0;     // Changed speed to 0 from 3
+
+//Jumping
+
+var draw = function( ) {
+
+    // If the key is pressed, we want to make senor cactus jump until he reaches the endpoint, if and only
+    //  if he is not moving, eg speedY is 0.
+
+    if (keyIsPressed && speedY === 0) { 
+        speedY = 3;                    
+    }                                   
+
+    senorY = senorY - speedY;
+
+     if(senorY > 350) {
+       speedY = speedY * 0;
+    }
+
+    if(senorY < 200) {
+         speedY = speedY * -1;
+    }
+};
+
+          
               //Use jumping code to jump on/ over barrels and oils and intersection code to trigger a block when touching the barrels
+              
+              
+              
           //-Collects raindrops (var rainImg, var rainX1, var rainX2, var rainY1, var rainY2)
               //Use jumping code and intersection code to trigger the "gain a life" code
       //If touches any of these things, use intersection code, and trigger the "Lose" animation (where image "normal" cactus changes to "dead" cactus while making him fall)
