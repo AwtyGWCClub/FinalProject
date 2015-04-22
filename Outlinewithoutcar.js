@@ -78,8 +78,10 @@ var draw = function() {
           // how far senor cactus moves every time
 
 var senorImg = senorcactusImg.jpg;
-var senorX = 0;
-var senorY = 0;
+var senorX1 = 0;
+var senorX2 = 0;
+var senorY1 = 0;
+var senorY2 = 0;
 var speedX = 0;
 var speedY = 0;     // Changed speed to 0 from 3
 
@@ -96,11 +98,11 @@ var draw = function( ) {
 
     senorY = senorY - speedY;
 
-     if(senorY > 350) {
+     if(senorY1 > 350) {
        speedY = speedY * 0;
     }
 
-    if(senorY < 200) {
+    if(senorY1 < 200) {
          speedY = speedY * -1;
     }
 };
@@ -108,7 +110,27 @@ var draw = function( ) {
           
               //Use jumping code to jump on/ over barrels and oils and intersection code to trigger a block when touching the barrels
               
-              
+              //intersection function: if the X and Y coordinates of the cactus image intersect the X and Y coordinates of the oil image, then this fucntion is true, if not, this function is false
+
+var barrelImg = barrelimage.jpg;
+var barrelX1 = 0;
+var barrelX2 = 0;
+var barrelY1 = 0;
+var barrelY2 = 0;
+
+    var intersectRect = function(senorX1, senorX2, senorY1, senorY2, barrelX1, barrelX2, barrelY1, barrelY2){
+        var doesIntersect = false;
+      
+        if((senorX1 <= barrelX1 && barrelX1 <= senorX2) && (senorY1 <= barrelY1 && barrelY1 <= senorY2)){
+            doesIntersect = true;
+        }
+        else{
+            doesIntersect = false;
+        }
+     return doesIntersect;
+   };
+   
+    
               
           //-Collects raindrops (var rainImg, var rainX1, var rainX2, var rainY1, var rainY2)
               //Use jumping code and intersection code to trigger the "gain a life" code
