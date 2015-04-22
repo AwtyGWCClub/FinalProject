@@ -118,10 +118,10 @@ var barrelX2 = 0;
 var barrelY1 = 0;
 var barrelY2 = 0;
 
-    var intersectRect = function(senorX1, senorX2, senorY1, senorY2, barrelX1, barrelX2, barrelY1, barrelY2){
+    var intersectBarrelside = function(senorX1, senorX2, senorY1, senorY2, barrelX1, barrelX2, barrelY1, barrelY2){
         var doesIntersect = false;
       
-        if((senorX1 <= barrelX1 && barrelX1 <= senorX2) && (senorY1 <= barrelY1 && barrelY1 <= senorY2)){
+        if((senorX1 <= barrelX2 && barrelX1 <= senorX2)){
             doesIntersect = true;
         }
         else{
@@ -130,7 +130,11 @@ var barrelY2 = 0;
      return doesIntersect;
    };
    
-    
+   if (intersectBarrel === true){
+        senorY1 = barrelY1;
+        senorX1 = barrelX1; 
+   }
+    //if the cactus "intersects" the barrel
               
           //-Collects raindrops (var rainImg, var rainX1, var rainX2, var rainY1, var rainY2)
               //Use jumping code and intersection code to trigger the "gain a life" code
