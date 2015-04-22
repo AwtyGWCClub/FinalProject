@@ -23,6 +23,24 @@ var z2 = -405; // closeness of mtns
 
 var sunIsUp = true;
 var count = 0;
+
+//cactus parameters
+var senorImg = senorcactusImg.jpg;
+var senorX1 = 0;//bottom left corner
+var senorX2 = 0;//bottom right corner
+var senorY1 = 0;//top left corner
+var senorY2 = 0;//top right corner
+var speedX = 0;//speed of movement of X coordinate
+var speedY = 0;//speed of movement of Y coordinate
+
+//barrel parameters
+var barrelImg = barrelimage.jpg;
+var barrelX1 = 0;//bottom left corner
+var barrelX2 = 0;//bottom right corner
+var barrelY1 = 0;//top left corner
+var barrelY2 = 0;//top right corner
+var barrelmove = 1;//speed of the barrel's movement
+
 var draw = function() {
     if(!sunIsUp){
         fill(1, 5, 79); // night sky 
@@ -77,17 +95,10 @@ var draw = function() {
           
           // how far senor cactus moves every time
 
-var senorImg = senorcactusImg.jpg;
-var senorX1 = 0;
-var senorX2 = 0;
-var senorY1 = 0;
-var senorY2 = 0;
-var speedX = 0;
-var speedY = 0;     // Changed speed to 0 from 3
+    // Changed speed to 0 from 3
 
 //Jumping
 
-var draw = function( ) {
 
     // If the key is pressed, we want to make senor cactus jump until he reaches the endpoint, if and only
     //  if he is not moving, eg speedY is 0.
@@ -108,17 +119,21 @@ var draw = function( ) {
 };
 
           
-              //Use jumping code to jump on/ over barrels and oils and intersection code to trigger a block when touching the barrels
+//Use jumping code to jump on/ over barrels and oils and intersection code to trigger a block when touching the barrels
               
-              //intersection function: if the X and Y coordinates of the cactus image intersect the X and Y coordinates of the oil image, then this fucntion is true, if not, this function is false
+//intersection function: if the X and Y coordinates of the cactus image intersect the X and Y coordinates of the oil image, then this fucntion is true, if not, this function is false
 
-var barrelImg = barrelimage.jpg;
-var barrelX1 = 0;
-var barrelX2 = 0;
-var barrelY1 = 0;
-var barrelY2 = 0;
-
-    var intersectBarrelside = function(senorX1, senorX2, senorY1, senorY2, barrelX1, barrelX2, barrelY1, barrelY2){
+//barrel is moving
+barrelX1 = barrelX1 - barrelmove
+  
+  //if cactus touches the left side of the barrel, the barrel will drag him with it unless if he jumps out of the way
+  //if he gets dragged out of the screen, game ends, and the background stops moving
+  if(senorX2 <= 0){
+    mountain = false;
+    road = false;
+  }
+  
+    var intersectBarrelleft = function(senorX2, barrelX1){
         var doesIntersect = false;
       
         if((senorX1 <= barrelX2 && barrelX1 <= senorX2)){
@@ -130,10 +145,27 @@ var barrelY2 = 0;
      return doesIntersect;
    };
    
-   if (intersectBarrel === true){
-        senorY1 = barrelY1;
-        senorX1 = barrelX1; 
+   if (intersectBarrelleft === true){
+        senorX2 = senorX2 - movebarrel; 
    }
+   
+   ar intersectBarrelleft = function(senorX2, barrelX1){
+        var doesIntersect = false;
+      
+        if((senorX1 <= barrelX2 && barrelX1 <= senorX2)){
+            doesIntersect = true;
+        }
+        else{
+            doesIntersect = false;
+        }
+     return doesIntersect;
+   };
+   
+   if (intersectBarrelleft === true){
+        senorX2 = senorX2 - movebarrel; 
+   }
+   
+   
     //if the cactus "intersects" the barrel
               
           //-Collects raindrops (var rainImg, var rainX1, var rainX2, var rainY1, var rainY2)
