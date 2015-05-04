@@ -1,19 +1,18 @@
-//Senor Cactus game outline:
-
-  //Game starts:
-   // ->Background starts moving (Use moving background code / var backgroundposition, var backgroundwidth)
-
 noStroke();//no outline
 var mountain = function(x1, x2, x3){
     fill(199, 167, 40);
     triangle(x1, 100, x2, 100, x3, 18);
 }; //mountain depends on position
 
+    
 var road = function(y){
     fill(173, 133, 59);
     rect(0, y, 400, 2);
 }; //draw a grey road
 
+
+ 
+    
 var z = 0; // closeness of mountains 
 var x1 = [5, 205]; // left side of mtn 
 var x2 = [200, 400]; // right side of mtn 
@@ -25,68 +24,122 @@ var sunIsUp = true;
 var count = 0;
 
 //cactus parameters
-var senorImg = senorcactusImg.jpg;
-var senorX1 = 0;//bottom left corner
-var senorX2 = 0;//bottom right corner
-var senorY1 = 0;//top left corner
-var senorY2 = 0;//top right corner
+var senorImg = getImage("avatars/leafers-ultimate");
+
+var senorX1 = 20;//bottom left corner
+var senorX2 = senorX1 + 125;//bottom right corner
+var senorY1 = 200;//top left corner
+var senorY2 = senorY1 + 125;//top right corner
+var senorwidth = 125;
+var senorheight = 125;
 var speedX = 0;//speed of movement of X coordinate
 var speedY = 0;//speed of movement of Y coordinate
 
 //barrel parameters
-var barrelImg = barrelimage.jpg;
-var barrelX1 = 0;//bottom left corner
-var barrelX2 = 0;//bottom right corner
-var barrelY1 = 0;//top left corner
-var barrelY2 = 0;//top right corner
-var barrelmove = 1;//speed of the barrel's movement
+var barrelImg = getImage("cute/BrownBlock");
+var barrelX1 = 371;//bottom left corner
+var barrelX2 = barrelX1 + 50;//bottom right corner
+var barrelY1 = 230;//top left corner
+var barrelY2 = barrelY1 + 90;//top right corner
+var barrelwidth = 50;
+var barrelheight = 90;
+var barrelmove = 2 ;//speed of the barrel's movement
 
+//rain parameters
+var rainImg = getImage("avatars/piceratops-seed");
+var rainX1 = 200;
+var rainX2 = rainX1 + 50;
+var rainY1 = 20;
+var rainY2 = rainY1 + 60;
+var rainmove = 1;
+var rainwidth = 50;
+var rainheight = 60;
+
+//flower1 parameters
+var flower1Img = getImage("space/healthheart");
+var flower1X = 350;
+var flower1Y = 357;
+var flower1width = 30;
+var flower1height = 30;
+
+//flower2 parameters
+var flower2Img = getImage("space/healthheart");
+var flower2X = 310;
+var flower2Y = 357;
+var flower2width = 30;
+var flower2height = 30;
+
+//flower2 parameters
+var flower3Img = getImage("space/healthheart");
+var flower3X = 270;
+var flower3Y = 357;
+var flower3width = 30;
+var flower3height = 30;
+
+//oil parameters
+var oilImg = getImage("cute/WaterBlock");
+var oilX1 = 350;
+var oilX2 = oilX1 + 40;
+var oilY1 = 300;
+var oilY2 = oilY1 + 20;
+var oilwidth = 40;
+var oilheight = 20;
+var oilmove = 1;
 var draw = function() {
-    if(!sunIsUp){
+ 
+ if(!sunIsUp){
         fill(1, 5, 79); // night sky 
         rect(0,0,400,100); 
         fill(255, 255, 255);
         ellipse(80, 20, 15, 15); //stars 
         for(var s = 0; s<30; s++){
-            ellipse(random(0,400), random(0,100), 2,2);
+            ellipse(random(0,400), random(0,100), 3,2);
         }
      }
     else{
         background(255, 255, 255); //day sky 
-        fill(138, 237, 232);
+        fill(101, 222, 252);
         rect(0,0,400,100);
         fill(238, 255, 0);
         ellipse(40,30,30,30);
-        fill(255, 255, 255);
     }
-
+      
+    
+    count = count +1;
+    if(count >= 900){
+        sunIsUp = !sunIsUp;
+        count = 0;
+        
+        
+    }
+    
+  
     for(var k =0; k<2; k++){
         mountain(z+x1[k], z+x2[k], z+x3[k]);
         mountain(z2+x1[k], z2+x2[k], z2+x3[k]); //what? *** 
     }
-    z = z+1;
-    z2 = z2+1;
-    if(z >= 400){
-        z = -405;
-    };
-    if(z2 >= 400){
-        z2 = -405;
-    };
-        fill(204, 162, 47);
+    z = z-2;
+    z2 = z2-2;
+    if(z <= -405){
+        z = 400;
+    }
+    if(z2 <= -405){
+        z2 = 400;
+    }
+        fill(212, 164, 42);
     rect(0,100,500,400);
-  
+   
+ 
     fill(33,33,33);
     rect(0,305,400,50);
     road(330);
     fill(112, 122, 122);
     rect(0, 300, 400, 5);
-    };
-    count = count +1;
-    if(count >= 900){
-        sunIsUp = !sunIsUp;
-        count = 0;
-    };
+    
+
   //draw function
+
+ //draw function
 
 
 
@@ -100,76 +153,151 @@ var draw = function() {
 //Jumping
 
 
+
     // If the key is pressed, we want to make senor cactus jump until he reaches the endpoint, if and only
     //  if he is not moving, eg speedY is 0.
 
     if (keyIsPressed && speedY === 0) { 
-        speedY = 3;                    
+        speedY = 5 ;                    
     }                                   
 
-    senorY = senorY - speedY;
+    senorY1 = senorY1 - speedY;
+    senorY2 = senorY1 + 125;
 
-     if(senorY1 > 350) {
+     if(senorY1 > 200) {
        speedY = speedY * 0;
     }
 
-    if(senorY1 < 200) {
+    if(senorY1 < 100) {
          speedY = speedY * -1;
     }
-};
 
           
 //Use jumping code to jump on/ over barrels and oils and intersection code to trigger a block when touching the barrels
               
-//intersection function: if the X and Y coordinates of the cactus image intersect the X and Y coordinates of the oil image, then this fucntion is true, if not, this function is false
+
 
 //barrel is moving
-barrelX1 = barrelX1 - barrelmove
-  
+
+if(barrelX1>=0-barrelX2-50){
+barrelX1 = barrelX1 - barrelmove;
+barrelX2 = barrelX1+50;
+}  
+else{
+    barrelImg = false;
+}
+
+if(barrelX1 <= 0 - barrelX2 - 50){
+ barrelX1 = 400;
+ barrelX2 = barrelX1 + 50;
+}
+
   //if cactus touches the left side of the barrel, the barrel will drag him with it unless if he jumps out of the way
-  //if he gets dragged out of the screen, game ends, and the background stops moving
-  if(senorX2 <= 0){
-    mountain = false;
-    road = false;
+  
+//raindrop is moving
+
+if(rainX1>= 0){
+    rainX1 = rainX1 - rainmove;
+    rainX2 = rainX1 + 50;
+    rainY1 = rainY1 + rainmove;
+    rainY2 = rainY1 + 60;
+}
+    else{
+     rainImg = false;   
+    }
+
+//oil is moving
+if(oilX1>= 0 - 40){
+    oilX1 = oilX1 - oilmove;
+    oilX2 = oilX1 + 40;
+}
+  
+//intersection function: if the X and Y coordinates of the cactus image intersect the X and Y coordinates of the oil image, then this fucntion is true, if not, this function is false  
+    var doesIntersect = function(rctX1, rctX2, rctY1, rctY2, rct2X1, rct2X2, rct2Y1, rct2Y2){
+        var doesIntersect = false;
+      
+      println("senorXcoordinates " + rctX1 + " " + rctX2);
+        println("senorYcoordinates " + rctY1 + " " + rctY2 );
+        println("barrelXcoordinates " + rct2X1 + " " + rct2X2);
+        println("barrelYcoordinates " + rct2Y1 + " " + rct2Y2);
+        
+        if(
+            ((rctX1 <= rct2X1 && rctX2 >= rct2X1) || (rctX1 >= rct2X2 && rctX2 <= rct2X2)) && 
+            ((rctY1 <= rct2Y1-30 && rctY2-30 >= rct2Y1) || (rctY1 >= rct2Y2-30 && rctY2 <= rct2Y2-30))
+            ){
+            doesIntersect = true;
+        }
+        else{
+            println("false");
+            doesIntersect = false;
+        }
+     return doesIntersect;
+   };
+   
+   if (doesIntersect(senorX1, senorX2, senorY1, senorY2, barrelX1, barrelX2, barrelY1, barrelY2) === true){
+        senorX1 = senorX1 - barrelmove;
+        senorX2 = senorX1 + 125;
+   }
+   else{
+       if(senorX1 < 20){
+           senorX1 = senorX1 + barrelmove;
+           senorX2 = senorX1+125;
+       }
+   }
+   //if the cactus "intersects" the barrel
+  //if he gets dragged out of the screen, game ends, and the background stops moving 
+   var gameoverbarrel = function(){
+       z = 0;
+    z2 = 0;
+    text("Game Over!!", 145, 185, 200, 100);
+    textSize(20);
+   };
+   
+   if(senorX2 < 0){
+   gameoverbarrel();
   }
   
-    var intersectBarrelleft = function(senorX2, barrelX1){
-        var doesIntersect = false;
-      
-        if((senorX1 <= barrelX2 && barrelX1 <= senorX2)){
-            doesIntersect = true;
-        }
-        else{
-            doesIntersect = false;
-        }
-     return doesIntersect;
-   };
-   
-   if (intersectBarrelleft === true){
-        senorX2 = senorX2 - movebarrel; 
+  
+   if (doesIntersect(senorX1, senorX2, senorY1, senorY2, rainX1, rainX2, rainY1, rainY2) === true){
+    rainImg = false;
+    println("raindrop!!");
    }
    
-   ar intersectBarrelleft = function(senorX2, barrelX1){
-        var doesIntersect = false;
-      
-        if((senorX1 <= barrelX2 && barrelX1 <= senorX2)){
-            doesIntersect = true;
-        }
-        else{
-            doesIntersect = false;
-        }
-     return doesIntersect;
-   };
-   
-   if (intersectBarrelleft === true){
-        senorX2 = senorX2 - movebarrel; 
+   if (doesIntersect(senorX1, senorX2, senorY1, senorY2, oilX1, oilX2, oilY1, oilY2) === true){
+    flower1Img = false;
    }
    
-   
-    //if the cactus "intersects" the barrel
+   //if cactus "intersects" the raindrop
               
           //-Collects raindrops (var rainImg, var rainX1, var rainX2, var rainY1, var rainY2)
               //Use jumping code and intersection code to trigger the "gain a life" code
       //If touches any of these things, use intersection code, and trigger the "Lose" animation (where image "normal" cactus changes to "dead" cactus while making him fall)
      //If he suceeds, proceed to ending animation. (var progress)
-  //Game ends.
+  //Game ends.\
+  
+image(senorImg, senorX1, senorY1, senorwidth, senorheight);
+image(barrelImg, barrelX1, barrelY1, barrelwidth, barrelheight);
+image(rainImg, rainX1, rainY1, rainwidth, rainheight);
+image(flower1Img, flower1X, flower1Y, flower1width, flower1height);
+image(flower2Img, flower2X, flower2Y, flower2width, flower2height);
+image(flower3Img, flower3X, flower3Y, flower3width, flower3height);
+image(oilImg, oilX1, oilY1, oilwidth, oilheight);
+
+
+//flower function
+var showflower = function (flower, playing, flower1Img, flower2Img, flower3Img){ 
+var flower = true; 
+var playing = true;
+
+        if(flower===true){
+        flower1Img = true;
+        flower2Img = true;
+        flower3Img = true;
+
+        }
+
+};
+
+showflower();
+
+};
